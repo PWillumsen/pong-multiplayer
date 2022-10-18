@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import type { GameState } from '../../types';
+import type { GameState } from '@pong-socket/types';
 
 const BAT_COLOR = "#ADADAD"
 const BG_COLOR = "#282828"
@@ -17,7 +17,6 @@ socket.on("gameover", handleGameOver);
 socket.on('gameCode', handleGameCode);
 socket.on('unknownCode', handleUnknownCode);
 socket.on('tooManyPlayers', handleTooManyPlayers);
-socket.on("debug", handleDebug);
 
 const initialScreen = document.getElementById("initialScreen");
 const gameScreen = document.getElementById("gameScreen");

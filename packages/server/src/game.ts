@@ -1,4 +1,4 @@
-import type { GameState } from "../../types";
+import type { GameState } from "@pong-socket/types";
 
 const FRAME_RATE = 20;
 const BAT_HEIGHT = 100;

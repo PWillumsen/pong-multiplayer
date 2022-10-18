@@ -1,0 +1,16 @@
+{
+  "name": "@pong-socket/server",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx nodemon src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "socket.io": "^4.5.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
