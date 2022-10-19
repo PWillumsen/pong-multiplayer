@@ -11,6 +11,7 @@
     "socket.io": "^4.5.2"
   },
   "devDependencies": {
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "@pong-socket/types": "workspace:*"
   }
 }

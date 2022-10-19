@@ -7,6 +7,7 @@
     "vite": "^3.1.0"
   },
   "name": "@pong-socket/frontend",
+  "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {

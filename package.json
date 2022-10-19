@@ -4,7 +4,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:frontend": "pnpm --filter @pong-socket/frontend dev",
+    "dev:server": "pnpm --filter @pong-socket/server dev",
+    "dev": "pnpm --stream -r run dev"
   },
   "repository": {
     "type": "git",
@@ -15,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/PeterWillumsen/pong-multiplayer/issues"
   },
-  "homepage": "https://github.com/PeterWillumsen/pong-multiplayer#readme",
-  "workspaces": [
-    "packages/*"
-  ]
+  "homepage": "https://github.com/PeterWillumsen/pong-multiplayer#readme"
 }
