@@ -1,5 +1,4 @@
 .DS_Store
-*/build/
-*/node_modules/
-/node_modules/
-server/out/
+node_modules
+dist
+out

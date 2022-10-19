@@ -1,6 +1,7 @@
 import type { GameState } from "@pong-socket/types";
 
 const FRAME_RATE = 20;
+const BAT_WIDTH = 10;
 const BAT_HEIGHT = 100;
 const CANVAS_HEIGHT = 585;
 const CANVAS_WIDTH = 800;
@@ -51,15 +52,15 @@ function gameLoop(state: GameState): number {
   }
 
 
-  // detectCollision(state);
+  detectCollision(state);
 
   // Did ball hit paddle?
-  if (p1.pos < ball.pos.y && ball.pos.y < p1.pos + BAT_HEIGHT && ball.pos.x < 30) {
-    ball.velocity.x *= -1;
-  }
-  if (p2.pos < ball.pos.y && ball.pos.y < p2.pos + BAT_HEIGHT && ball.pos.x > CANVAS_WIDTH - 30) {
-    ball.velocity.x *= -1;
-  }
+  // if (p1.pos < ball.pos.y && ball.pos.y < p1.pos + BAT_HEIGHT && ball.pos.x < 30) {
+  //   ball.velocity.x *= -1;
+  // }
+  // if (p2.pos < ball.pos.y && ball.pos.y < p2.pos + BAT_HEIGHT && ball.pos.x > CANVAS_WIDTH - 30) {
+  //   ball.velocity.x *= -1;
+  // }
 
   
   // update ball pos
@@ -81,9 +82,9 @@ function gameLoop(state: GameState): number {
     resetObjects(state);
   }
 
-  // if (score.p1 === 3){
+  // if (score.p1 === 9){
   //   return 1
-  // } else if (score.p2 === 3){
+  // } else if (score.p2 === 9){
   //   return 2
   // }else {
   //   return 0
@@ -108,8 +109,59 @@ function resetObjects(state: GameState) {
 }
 
 
-function detectCollision(state: GameState): number {
-  return 0
+function detectCollision(state: GameState) {
+  let testX = state.ball.pos.x
+  let testY = state.ball.pos.y
+
+  
+  // left bat
+  if (state.ball.pos.x < 20) {
+    testX = 20;
+  } else if (state.ball.pos.x > 20 + BAT_WIDTH) {
+    testX = 20 + BAT_WIDTH;
+  }
+  
+  if (state.ball.pos.y < state.players[0].pos) {
+    testY = state.players[0].pos;
+  } else if (state.ball.pos.y > state.players[0].pos + BAT_HEIGHT) {
+    testY = state.players[0].pos + BAT_HEIGHT;
+  }
+  
+  let distX = state.ball.pos.x - testX;
+  let distY = state.ball.pos.y - testY;
+  
+  let distance = Math.sqrt( (distX*distX) + (distY*distY) );
+  
+  if (distance <= 10) {
+    state.ball.velocity.x *= -1;
+  }
+  
+  
+  testX = state.ball.pos.x
+  testY = state.ball.pos.y
+  
+  // right bat
+  if (state.ball.pos.x < CANVAS_WIDTH - 30) {
+    testX = CANVAS_WIDTH - 30;
+  } else if (state.ball.pos.x > CANVAS_WIDTH - 30 + BAT_WIDTH) {
+    testX = CANVAS_WIDTH - 30 + BAT_WIDTH;
+  }
+  
+  if (state.ball.pos.y < state.players[1].pos) {
+    testY = state.players[1].pos;
+  } else if (state.ball.pos.y > state.players[1].pos + BAT_HEIGHT) {
+    testY = state.players[1].pos + BAT_HEIGHT;
+  }
+  
+  distX = state.ball.pos.x - testX;
+  distY = state.ball.pos.y - testY;
+  
+  distance = Math.sqrt( (distX*distX) + (distY*distY) );
+  
+  if (distance <= 10) {
+    state.ball.velocity.x *= -1;
+  }
+  
 }
 
 export { FRAME_RATE, createGameState, gameLoop };
